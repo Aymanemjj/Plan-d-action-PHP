@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -32,12 +33,11 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
+            'title' => 'required|min:5|max:255',
+            'content' => 'required|min:255',
             'category_id' => 'required'
-
         ]);
-
+        $validated['user_id'] = Auth::id();
         Article::create($validated);
 
         return redirect()->route('article.index');
@@ -67,10 +67,9 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         $validated = $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
+            'title' => 'required|min:5|max:255',
+            'content' => 'required|min:255',
             'category_id' => 'required'
-
         ]);
 
 

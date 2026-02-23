@@ -10,7 +10,7 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{ url('/css/app.css') }}" rel="stylesheet" />
+    <link href="{{ url('/css/styles.css') }}" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 

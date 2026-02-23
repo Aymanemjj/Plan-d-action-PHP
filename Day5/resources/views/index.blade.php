@@ -41,16 +41,21 @@
                                      <h2 class="card-title h4">{{ $article->title }}</h2>
                                      <a class="btn btn-primary" href="{{ route('article.show', $article) }}">Read more
                                          →</a>
-                                     <a class="btn btn-seccondary" href="{{ route('article.edit', $article) }}">Edit
-                                         →</a>
-                                     <a class="btn btn-danger" href="{{ route('article.destroy', $article) }}">Delete
-                                         →</a>
+                                     @auth
+                                         @if ($article->author->id == Auth::id())
+                                             <a class="btn btn-seccondary" href="{{ route('article.edit', $article) }}">Edit
+                                                 →</a>
+                                         @elseif (Auth::user()->role->name == 'admin')
+                                             <a class="btn btn-danger" href="{{ route('article.destroy', $article) }}">Delete
+                                                 →</a>
+                                         @endif
+                                     @endauth
                                  </div>
                              </div>
                          @endforeach
 
                      </div>
-                     {{$articles->links()}}
+                     {{ $articles->links() }}
                  </div>
              </div>
          </div>

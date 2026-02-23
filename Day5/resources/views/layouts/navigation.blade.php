@@ -34,10 +34,17 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('article.index')">
+                            {{ __('Home') }}
+                        </x-dropdown-link>
+                        @if (Auth::user()->role->name == 'user')
+                            <x-dropdown-link :href="route('article.create')">
+                                {{ __('Write') }}
+                            </x-dropdown-link>
+                        @endif
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

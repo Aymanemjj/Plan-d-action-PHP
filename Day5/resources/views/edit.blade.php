@@ -15,12 +15,15 @@
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
+            <x-input-error :messages="$errors->get('category')" class="mt-2" />
 
             <label for="title">Title:</label>
             <input class="form-control" type="text" name="title" id="title" value="{{ $article->title }}" required>
+            <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
             <label for="content">Content:</label>
             <textarea class="form-control" name="content" id="content" rows="8" required>{{ $article->content }}</textarea>
+            <x-input-error :messages="$errors->get('content')" class="mt-2" />
 
             <button class="btn btn-primary" type="submit">Edit</button>
         </form>
